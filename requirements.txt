@@ -1,0 +1,22 @@
+# Organiser
+apscheduler
+httplib2
+requests
+
+# Calendar
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+json
+pickle
+
+# Weather
+json
+pytz
+requests
+
+# Display
+numpy
+pillow
+RPi.GPIO
+spidev
