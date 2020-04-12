@@ -26,7 +26,7 @@ from google.oauth2.credentials import Credentials
 class Calendar:
     """Google calendar API wrapper for getting events and normalise them."""
 
-    _STATUS: Dict[str, str] = {"accepted": "yes", "declined": "no", "tentative": "maybe", "needsAction": "N/A"}
+    _STATUS: Dict[str, str] = {"accepted": "yes", "declined": "no", "tentative": "maybe", "needsAction": None}
     """All possible event status."""
 
     def __init__(self):
@@ -130,9 +130,10 @@ class Calendar:
 
         return {
             "title": source["summary"],
+            "description": source.get("description", None),
             "start": Calendar._normalise_date_time(source["start"]),
             "end": Calendar._normalise_date_time(source["end"]),
-            "location": source.get("location", "N/A"),
+            "location": source.get("location", None),
             "status": next((Calendar._STATUS[attendee["responseStatus"]]
                             for attendee in source.get("attendees", [])
                             if attendee.get("self", False)), "yes"),
@@ -163,7 +164,7 @@ class Calendar:
                              .format(json.dumps(source, indent=2, sort_keys=True)))
 
         if len(date_time.get("time", "")) == 0:
-            date_time["time"] = "N/A"
+            date_time["time"] = None
 
         return date_time
 
@@ -224,7 +225,7 @@ class Calendar:
             A string that when compared to another event's will allow to sort them.
         """
 
-        if event["start"]["time"] == "N/A":
+        if event["start"]["time"] is None:
             return "{}T00:00:00".format(event["start"]["date"])
 
         else:
