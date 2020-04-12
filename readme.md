@@ -10,8 +10,8 @@ A simple interface showing the weather forecast and upcoming events, shown in an
 Every fifteen minutes, it pulls the upcoming events from [Google Calendar](https://developers.google.com/calendar) and
 weather forecast from [Open Weather Map](https://openweathermap.org/), writing it all into a simple UI on a 300x400
 greyscale image, using a custom [font](https://fonts.google.com/specimen/Space+Mono) and
-[icons](http://adamwhitcroft.com/climacons/). Then using the RPi's SPI interface, it compresses the image to 2-bit
-shades of grey and sends the data to the display.
+[icons](http://adamwhitcroft.com/climacons/). Then it compresses the image to 2-bit shades of grey and, using the RPi's
+SPI interface, sends the data to the display.
 
 ## Usage
 
